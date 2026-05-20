@@ -1,5 +1,5 @@
 import { getApp, getApps, initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, type Auth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -19,7 +19,7 @@ const hasRequiredConfig = Boolean(
     firebaseConfig.appId,
 );
 
-const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const app = hasRequiredConfig ? (getApps().length ? getApp() : initializeApp(firebaseConfig)) : null;
 
-export const auth = typeof window !== "undefined" && hasRequiredConfig ? getAuth(app) : null;
+export const auth: Auth | null = typeof window !== "undefined" && app ? getAuth(app) : null;
 export const isFirebaseConfigured = hasRequiredConfig;
