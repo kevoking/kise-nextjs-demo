@@ -18,8 +18,13 @@ export default function DashboardPage() {
     }
 
     setLoading(true);
-    await signOut(auth);
-    router.replace("/");
+
+    try {
+      await signOut(auth);
+      router.replace("/");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

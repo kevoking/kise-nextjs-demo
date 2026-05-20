@@ -1,7 +1,7 @@
 "use client";
 
 import { onAuthStateChanged } from "firebase/auth";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { auth, isFirebaseConfigured } from "@/lib/firebase";
 
 const AuthContext = createContext({
@@ -27,12 +27,11 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  const value = useMemo(
-    () => ({ user, loading, configured: isFirebaseConfigured }),
-    [user, loading],
+  return (
+    <AuthContext.Provider value={{ user, loading, configured: isFirebaseConfigured }}>
+      {children}
+    </AuthContext.Provider>
   );
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
