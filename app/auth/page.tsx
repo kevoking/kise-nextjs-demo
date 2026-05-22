@@ -31,7 +31,7 @@ export default function AuthPage() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!configured || !auth) {
+    if ( !auth) {
       setError("Firebase is not configured. Add NEXT_PUBLIC_FIREBASE_* values in .env.local.");
       return;
     }
