@@ -48,7 +48,7 @@ export default function DashboardPage() {
             {loading ? "Logging out..." : "Logout"}
           </Button>
           <Button asChild variant="outline">
-            <Link href="/">Home</Link>
+            <Link href="/dashboard/chat">Chat</Link>
           </Button>
         </CardFooter>
       </Card>

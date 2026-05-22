@@ -16,7 +16,7 @@ type Mode = "login" | "signup";
 export default function AuthPage() {
   const router = useRouter();
   const { user, loading: authLoading, configured } = useAuth();
-  const [mode, setMode] = useState<Mode>("login");
+  const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
